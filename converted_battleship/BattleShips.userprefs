@@ -1,15 +1,9 @@
 ﻿<Properties StartupItem="BattleShips.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug-Mac|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="src/UtilityFunctions.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="src/GameController.cs">
     <Files>
-      <File FileName="src/DeploymentController.cs" Line="121" Column="46" />
-      <File FileName="src/UtilityFunctions.cs" Line="267" Column="10" />
-      <File FileName="src/Model/TileView.cs" Line="14" Column="25" />
-      <File FileName="src/Model/Tile.cs" Line="128" Column="29" />
-      <File FileName="src/Model/Ship.cs" Line="109" Column="9" />
-      <File FileName="Resources/animations/splash.txt" Line="13" Column="11" />
-      <File FileName="src/GameResources.cs" Line="44" Column="36" />
-      <File FileName="src/GameController.cs" Line="135" Column="20" />
+      <File FileName="src/GameResources.cs" Line="59" Column="42" />
+      <File FileName="src/GameController.cs" Line="83" Column="13" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
