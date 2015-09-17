@@ -193,6 +193,10 @@
             Sets the difficulty for the next level of the game.
             </summary>
             <param name="setting">the new difficulty level</param></member>
+        <member name="T:Battleships.GameResources">
+            <summary>
+            This class contains the details regarding images, sounds, fonts and other resources during gametime.
+            </summary></member>
         <member name="M:Battleships.GameResources.GameFont(System.String)">
             <summary>
             Gets a Font Loaded in the Resources
@@ -221,6 +225,10 @@
             <summary>
             The Resources Class stores all of the Games Media Resources, such as Images, Fonts
             Sounds, Music.
+            </summary></member>
+        <member name="M:Battleships.GameResources.FreeResources">
+            <summary>
+            Releases the resources. Usually called when the game is closed.
             </summary></member>
         <member name="T:Battleships.GameState">
             <summary>
@@ -527,6 +535,11 @@
             <summary>
             The AI is locked onto a ship
             </summary></member>
+        <member name="M:Battleships.AIHardPlayer.#ctor(Battleships.BattleShipsGame)">
+            <summary>
+            Initializes the <see cref="T:Battleships.AIHardPlayer" /> class.
+            </summary>
+            <param name="game">Game.</param></member>
         <member name="M:Battleships.AIHardPlayer.GenerateCoords(System.Int32@,System.Int32@)">
             <summary>
             GenerateCoords will call upon the right methods to generate the appropriate shooting
@@ -614,6 +627,11 @@
             the AI can be searching for a ship, or if it has found a ship it will
             target the same ship
             </summary></member>
+        <member name="M:Battleships.AIMediumPlayer.#ctor(Battleships.BattleShipsGame)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Battleships.AIMediumPlayer" /> class.
+            </summary>
+            <param name="controller">Controller.</param></member>
         <member name="M:Battleships.AIMediumPlayer.GenerateCoords(System.Int32@,System.Int32@)">
             <summary>
             GenerateCoordinates should generate random shooting coordinates
@@ -708,6 +726,11 @@
             <param name="this">location 1</param>
             <param name="other">location 2</param>
             <returns>true if location 1 and location 2 are not at the same spot</returns></member>
+        <member name="M:Battleships.AIPlayer.#ctor(Battleships.BattleShipsGame)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Battleships.AIPlayer" /> class.
+            </summary>
+            <param name="game">Game.</param></member>
         <member name="M:Battleships.AIPlayer.GenerateCoords(System.Int32@,System.Int32@)">
             <summary>
             Generate a valid row, column to shoot at
@@ -842,6 +865,16 @@
             The ISeaGrid defines the read only interface of a Grid. This
             allows each player to see and attack their opponents grid.
             </summary></member>
+        <member name="P:Battleships.ISeaGrid.Width">
+            <summary>
+            Gets the width of the grid.
+            </summary>
+            <value>The width.</value></member>
+        <member name="P:Battleships.ISeaGrid.Height">
+            <summary>
+            Gets the height of the grid.
+            </summary>
+            <value>The height.</value></member>
         <member name="E:Battleships.ISeaGrid.Changed">
             <summary>
             Indicates that the grid has changed.
@@ -851,7 +884,7 @@
             Provides access to the given row/column
             </summary>
             <param name="row">the row to access</param>
-            <param name="column">the column to access</param>
+            <param name="col">the column to access</param>
             <value>what the player can see at that location</value>
             <returns>what the player can see at that location</returns></member>
         <member name="M:Battleships.ISeaGrid.HitTile(System.Int32,System.Int32)">
@@ -866,6 +899,10 @@
             Player has its own _PlayerGrid, and can see an _EnemyGrid, it can also check if
             all ships are deployed and if all ships are detroyed. A Player can also attach.
             </summary></member>
+        <member name="F:Battleships.Player._Random">
+            <summary>
+            Random Number Generator to be used as a variable.
+            </summary></member>
         <member name="P:Battleships.Player.Game">
             <summary>
             Returns the game that the player is part of.
@@ -877,6 +914,11 @@
             Sets the grid of the enemy player
             </summary>
             <value>The enemy's sea grid</value></member>
+        <member name="M:Battleships.Player.#ctor(Battleships.BattleShipsGame)">
+            <summary>
+            Prepares the deployment screen by adding ships onto grid then randomising it when loaded.
+            </summary>
+            <param name="controller">Controller.</param></member>
         <member name="P:Battleships.Player.EnemyGrid">
             <summary>
             The EnemyGrid is a ISeaGrid because you shouldn't be allowed to see the enemies ships
@@ -889,6 +931,11 @@
             <summary>
             ReadyToDeploy returns true if all ships are deployed
             </summary></member>
+        <member name="P:Battleships.Player.IsDestroyed">
+            <summary>
+            Gets a value indicating whether the ship is destroyed.
+            </summary>
+            <value><c>true</c> if this instance is destroyed; otherwise, <c>false</c>.</value></member>
         <member name="M:Battleships.Player.Ship(Battleships.ShipName)">
             <summary>
             Returns the Player's ship with the given name.
@@ -903,12 +950,22 @@
             </summary>
             <value>shots taken</value>
             <returns>teh number of shots taken</returns></member>
+        <member name="P:Battleships.Player.Hits">
+            <summary>
+            Returns the number of Hits a player has achieved
+            </summary>
+            <value>The hits.</value></member>
         <member name="P:Battleships.Player.Missed">
             <summary>
             Total number of shots that missed
             </summary>
             <value>miss count</value>
             <returns>the number of shots that have missed ships</returns></member>
+        <member name="P:Battleships.Player.Score">
+            <summary>
+            Returns the score the player has achieved
+            </summary>
+            <value>The score.</value></member>
         <member name="M:Battleships.Player.GetShipEnumerator">
             <summary>
             Makes it possible to enumerate over the ships the player
@@ -932,6 +989,10 @@
             <param name="row">the row to attack</param>
             <param name="col">the column to attack</param>
             <returns>the result of the attack</returns></member>
+        <member name="M:Battleships.Player.RandomizeDeployment">
+            <summary>
+            Randomizes the deployment when the deploymentscreen is loaded.
+            </summary></member>
         <member name="T:Battleships.ResultOfAttack">
             <summary>
             The result of an attack.
@@ -1100,6 +1161,21 @@
             </summary>
             <value>The topmost location of the ship</value>
             <returns>the row of the ship</returns></member>
+        <member name="P:Battleships.Ship.Column">
+            <summary>
+            The column location of the ship
+            </summary>
+            <value>The column.</value></member>
+        <member name="P:Battleships.Ship.Direction">
+            <summary>
+            Gets which direction the ship is facing
+            </summary>
+            <value>The direction.</value></member>
+        <member name="M:Battleships.Ship.#ctor(Battleships.ShipName)">
+            <summary>
+            Creates a new instance of <see cref="T:Battleships.Ship" /> class.
+            </summary>
+            <param name="ship">Ship.</param></member>
         <member name="M:Battleships.Ship.AddTile(Battleships.Tile)">
             <summary>
             Add tile adds the ship tile
@@ -1109,11 +1185,20 @@
             <summary>
             Remove clears the tile back to a sea tile
             </summary></member>
+        <member name="M:Battleships.Ship.Hit">
+            <summary>
+            Increments counter when a HIT has being achieved
+            </summary></member>
         <member name="P:Battleships.Ship.IsDeployed">
             <summary>
             IsDeployed returns if the ships is deployed, if its deplyed it has more than
             0 tiles
             </summary></member>
+        <member name="P:Battleships.Ship.IsDestroyed">
+            <summary>
+            Determines if a ship has being destroyed entirely or not.
+            </summary>
+            <value><c>true</c> if this instance is destroyed; otherwise, <c>false</c>.</value></member>
         <member name="M:Battleships.Ship.Deployed(Battleships.Direction,System.Int32,System.Int32)">
             <summary>
             Record that the ship is now deployed.
@@ -1126,6 +1211,30 @@
             The names of all of the ships in the gam
             </summary>
             <remarks></remarks></member>
+        <member name="F:Battleships.ShipName.None">
+            <summary>
+            No ship equals 0
+            </summary></member>
+        <member name="F:Battleships.ShipName.Tug">
+            <summary>
+            The tug equals 1
+            </summary></member>
+        <member name="F:Battleships.ShipName.Submarine">
+            <summary>
+            The submarine equals 2
+            </summary></member>
+        <member name="F:Battleships.ShipName.Destroyer">
+            <summary>
+            The destroyer equals 3
+            </summary></member>
+        <member name="F:Battleships.ShipName.Battleship">
+            <summary>
+            The battleship equals 4
+            </summary></member>
+        <member name="F:Battleships.ShipName.AircraftCarrier">
+            <summary>
+            The aircraft carrier equals 5
+            </summary></member>
         <member name="T:Battleships.Tile">
             <summary>
             Tile knows its location on the grid, if it is a ship and if it has been

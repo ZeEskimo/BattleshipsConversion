@@ -7,7 +7,9 @@ using System.Diagnostics;
 using SwinGameSDK;
 namespace Battleships
 {
-
+    /// <summary>
+    /// This class contains the details regarding images, sounds, fonts and other resources during gametime.
+    /// </summary>
     public static class GameResources
     {
         
@@ -293,7 +295,10 @@ namespace Battleships
                 Audio.FreeMusic(obj);
             }
         }
-        
+
+        /// <summary>
+        /// Releases the resources. Usually called when the game is closed.
+        /// </summary>
         public static void FreeResources()
         {
             FreeFonts();

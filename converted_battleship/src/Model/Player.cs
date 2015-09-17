@@ -14,12 +14,15 @@ namespace Battleships
     /// </summary>
     public class Player : IEnumerable<Ship>
     {
-        
+        /// <summary>
+        /// Random Number Generator to be used as a variable.
+        /// </summary>
         protected static Random _Random = new Random();
         private Dictionary<ShipName, Ship> _Ships = new Dictionary<ShipName, Ship>();
         private SeaGrid _playerGrid;
         private ISeaGrid _enemyGrid;
-        
+
+
         protected BattleShipsGame _game;
         private int _shots;
         private int _hits;
@@ -42,7 +45,11 @@ namespace Battleships
         public ISeaGrid Enemy {
             set { _enemyGrid = value; }
         }
-        
+
+        /// <summary>
+        /// Prepares the deployment screen by adding ships onto grid then randomising it when loaded.
+        /// </summary>
+        /// <param name="controller">Controller.</param>
         public Player(BattleShipsGame controller)
         {
             _game = controller;
@@ -79,7 +86,11 @@ namespace Battleships
         public bool ReadyToDeploy {
             get { return _playerGrid.AllDeployed; }
         }
-        
+
+        /// <summary>
+        /// Gets a value indicating whether the ship is destroyed.
+        /// </summary>
+        /// <value><c>true</c> if this instance is destroyed; otherwise, <c>false</c>.</value>
         public bool IsDestroyed {
             //Check if all ships are destroyed... -1 for the none ship
             get { return _playerGrid.ShipsKilled == Enum.GetValues(typeof(ShipName)).Length - 1; }
@@ -107,7 +118,11 @@ namespace Battleships
         public int Shots {
             get { return _shots; }
         }
-        
+
+        /// <summary>
+        /// Returns the number of Hits a player has achieved
+        /// </summary>
+        /// <value>The hits.</value>
         public int Hits {
             get { return _hits; }
         }
@@ -120,7 +135,11 @@ namespace Battleships
         public int Missed {
             get { return _misses; }
         }
-        
+
+        /// <summary>
+        /// Returns the score the player has achieved
+        /// </summary>
+        /// <value>The score.</value>
         public int Score {
             get {
                 if (IsDestroyed) {
@@ -198,7 +217,10 @@ namespace Battleships
             
             return result;
         }
-        
+
+        /// <summary>
+        /// Randomizes the deployment when the deploymentscreen is loaded.
+        /// </summary>
         public virtual void RandomizeDeployment()
         {
             bool placementSuccessful = false;

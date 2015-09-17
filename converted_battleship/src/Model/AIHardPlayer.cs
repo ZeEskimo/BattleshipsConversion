@@ -96,6 +96,11 @@ namespace Battleships
         private List<Target> _LastHit = new List<Target>();
         
         private Target _CurrentTarget;
+
+        /// <summary>
+        /// Initializes the <see cref="Battleships.AIHardPlayer"/> class.
+        /// </summary>
+        /// <param name="game">Game.</param>
         public AIHardPlayer(BattleShipsGame game) : base(game)
         {
         }

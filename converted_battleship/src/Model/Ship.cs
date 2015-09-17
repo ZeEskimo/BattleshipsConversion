@@ -68,15 +68,27 @@ namespace Battleships
         public int Row {
             get { return _row; }
         }
-        
+
+        /// <summary>
+        /// The column location of the ship
+        /// </summary>
+        /// <value>The column.</value>
         public int Column {
             get { return _col; }
         }
-        
+
+        /// <summary>
+        /// Gets which direction the ship is facing
+        /// </summary>
+        /// <value>The direction.</value>
         public Direction Direction {
             get { return _direction; }
         }
-        
+
+        /// <summary>
+        /// Creates a new instance of <see cref="Battleships.Ship"/> class.
+        /// </summary>
+        /// <param name="ship">Ship.</param>
         public Ship(ShipName ship)
         {
             _shipName = ship;
@@ -105,7 +117,10 @@ namespace Battleships
             }
             _tiles.Clear();
         }
-        
+
+        /// <summary>
+        /// Increments counter when a HIT has being achieved
+        /// </summary>
         public void Hit()
         {
             _hitsTaken = _hitsTaken + 1;
@@ -118,7 +133,11 @@ namespace Battleships
         public bool IsDeployed {
             get { return _tiles.Count > 0; }
         }
-        
+
+        /// <summary>
+        /// Determines if a ship has being destroyed entirely or not.
+        /// </summary>
+        /// <value><c>true</c> if this instance is destroyed; otherwise, <c>false</c>.</value>
         public bool IsDestroyed {
             get { return Hits == Size; }
         }

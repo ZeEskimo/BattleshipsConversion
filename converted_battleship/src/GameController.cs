@@ -84,7 +84,7 @@ namespace Battleships
             //Create the game
             _theGame = new BattleShipsGame();
             
-            //create the players
+            //create the players. Defaults to Medium if difficulty is not silected.
             switch (_aiSetting) {
             case AIOption.Medium:
                 _ai = new AIMediumPlayer(_theGame);
@@ -93,7 +93,8 @@ namespace Battleships
                 _ai = new AIHardPlayer(_theGame);
                 break;
             default:
-                _ai = new AIHardPlayer(_theGame);
+                _ai = new AIMediumPlayer(_theGame);
+
                 break;
             }
             

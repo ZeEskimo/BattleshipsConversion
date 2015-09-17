@@ -80,7 +80,10 @@ namespace Battleships
             }
         }
         
-        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Battleships.AIPlayer"/> class.
+        /// </summary>
+        /// <param name="game">Game.</param>
         public AIPlayer(BattleShipsGame game) : base(game)
         {
         }
