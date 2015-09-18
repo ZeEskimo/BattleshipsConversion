@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using SwinGameSDK;
-using static Battleships.GameController;
-using static Battleships.UtilityFunctions;
-using static Battleships.GameResources;
-using static Battleships.DeploymentController;
-using static Battleships.DiscoveryController;
-using static Battleships.EndingGameController;
-using static Battleships.MenuController;
+//using Battleships.GameController;
+//using Battleships.UtilityFunctions;
+//using Battleships.GameResources;
+//using Battleships.DeploymentController;
+//using Battleships.DiscoveryController;
+//using Battleships.EndingGameController;
+//using Battleships.MenuController;
 namespace Battleships
 {
 
@@ -133,7 +133,7 @@ namespace Battleships
             if (_Scores.Count == 0)
                 LoadScores();
             
-            SwinGame.DrawText("   High Scores   ", Color.White, GameFont("Courier"), SCORES_LEFT, SCORES_HEADING);
+            SwinGame.DrawText("   High Scores   ", Color.White, GameResources.GameFont("Courier"), SCORES_LEFT, SCORES_HEADING);
             
             //For all of the scores
             int i = 0;
@@ -144,9 +144,9 @@ namespace Battleships
                 
                 //for scores 1 - 9 use 01 - 09
                 if (i < 9) {
-                    SwinGame.DrawText(" " + (i + 1) + ":   " + s.Name + "   " + s.Value, Color.White, GameFont("Courier"), SCORES_LEFT, SCORES_TOP + i * SCORE_GAP);
+                    SwinGame.DrawText(" " + (i + 1) + ":   " + s.Name + "   " + s.Value, Color.White, GameResources.GameFont("Courier"), SCORES_LEFT, SCORES_TOP + i * SCORE_GAP);
                 } else {
-                    SwinGame.DrawText(i + 1 + ":   " + s.Name + "   " + s.Value, Color.White, GameFont("Courier"), SCORES_LEFT, SCORES_TOP + i * SCORE_GAP);
+                    SwinGame.DrawText(i + 1 + ":   " + s.Name + "   " + s.Value, Color.White, GameResources.GameFont("Courier"), SCORES_LEFT, SCORES_TOP + i * SCORE_GAP);
                 }
             }
         }
@@ -158,7 +158,7 @@ namespace Battleships
         public static void HandleHighScoreInput()
         {
             if (SwinGame.MouseClicked(MouseButton.LeftButton) || SwinGame.KeyTyped(KeyCode.vk_ESCAPE) || SwinGame.KeyTyped(KeyCode.vk_RETURN)) {
-                EndCurrentState();
+                GameController.EndCurrentState();
             }
         }
         
@@ -181,20 +181,20 @@ namespace Battleships
                 Score s = new Score();
                 s.Value = value;
                 
-                AddNewState(GameState.ViewingHighScores);
+                GameController.AddNewState(GameState.ViewingHighScores);
                 
                 int x = 0;
-                x = SCORES_LEFT + SwinGame.TextWidth(GameFont("Courier"), "Name: ");
+                x = SCORES_LEFT + SwinGame.TextWidth(GameResources.GameFont("Courier"), "Name: ");
                 
-                SwinGame.StartReadingText(Color.White, NAME_WIDTH, GameFont("Courier"), x, ENTRY_TOP);
+                SwinGame.StartReadingText(Color.White, NAME_WIDTH, GameResources.GameFont("Courier"), x, ENTRY_TOP);
                 
                 //Read the text from the user
                 while (SwinGame.ReadingText()) {
                     SwinGame.ProcessEvents();
-                    
-                    DrawBackground();
+
+                    UtilityFunctions.DrawBackground();
                     DrawHighScores();
-                    SwinGame.DrawText("Name: ", Color.White, GameFont("Courier"), SCORES_LEFT, ENTRY_TOP);
+                    SwinGame.DrawText("Name: ", Color.White, GameResources.GameFont("Courier"), SCORES_LEFT, ENTRY_TOP);
                     SwinGame.RefreshScreen();
                 }
                 
@@ -207,8 +207,8 @@ namespace Battleships
                 _Scores.RemoveAt(_Scores.Count - 1);
                 _Scores.Add(s);
                 _Scores.Sort();
-                
-                EndCurrentState();
+
+                GameController.EndCurrentState();
             }
         }
     }

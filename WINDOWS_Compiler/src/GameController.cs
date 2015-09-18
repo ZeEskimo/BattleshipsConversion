@@ -5,14 +5,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using SwinGameSDK;
-using static Battleships.GameController;
-using static Battleships.UtilityFunctions;
-using static Battleships.GameResources;
-using static Battleships.DeploymentController;
-using static Battleships.DiscoveryController;
-using static Battleships.EndingGameController;
-using static Battleships.MenuController;
-using static Battleships.HighScoreController;
+//using Battleships.GameController;
+//using Battleships.UtilityFunctions;
+//using Battleships.GameResources;
+//using Battleships.DeploymentController;
+//using Battleships.DiscoveryController;
+//using Battleships.EndingGameController;
+//using Battleships.MenuController;
+//using Battleships.HighScoreController;
 
 namespace Battleships
 {
@@ -133,23 +133,23 @@ namespace Battleships
         private static void PlayHitSequence(int row, int column, bool showAnimation)
         {
             if (showAnimation) {
-                AddExplosion(row, column);
+               UtilityFunctions.AddExplosion(row, column);
             }
             
-            Audio.PlaySoundEffect(GameSound("Hit"));
-            
-            DrawAnimationSequence();
+            Audio.PlaySoundEffect(GameResources.GameSound("Hit"));
+
+            UtilityFunctions.DrawAnimationSequence();
         }
         
         private static void PlayMissSequence(int row, int column, bool showAnimation)
         {
             if (showAnimation) {
-                AddSplash(row, column);
+                UtilityFunctions.AddSplash(row, column);
             }
             
-            Audio.PlaySoundEffect(GameSound("Miss"));
-            
-            DrawAnimationSequence();
+            Audio.PlaySoundEffect(GameResources.GameSound("Miss"));
+
+            UtilityFunctions.DrawAnimationSequence();
         }
         
         /// <summary>
@@ -166,30 +166,30 @@ namespace Battleships
             isHuman = object.ReferenceEquals(_theGame.Player, HumanPlayer);
             
             if (isHuman) {
-                Message = "You " + result.ToString();
+                UtilityFunctions.Message = "You " + result.ToString();
             } else {
-                Message = "The AI " + result.ToString();
+                UtilityFunctions.Message = "The AI " + result.ToString();
             }
             
             switch (result.Value) {
             case ResultOfAttack.Destroyed:
                 PlayHitSequence(result.Row, result.Column, isHuman);
-                Audio.PlaySoundEffect(GameSound("Sink"));
+                Audio.PlaySoundEffect(GameResources.GameSound("Sink"));
                 
                 break;
             case ResultOfAttack.GameOver:
                 PlayHitSequence(result.Row, result.Column, isHuman);
-                Audio.PlaySoundEffect(GameSound("Sink"));
+                Audio.PlaySoundEffect(GameResources.GameSound("Sink"));
                 
-                while (Audio.SoundEffectPlaying(GameSound("Sink"))) {
+                while (Audio.SoundEffectPlaying(GameResources.GameSound("Sink"))) {
                     SwinGame.Delay(10);
                     SwinGame.RefreshScreen();
                 }
                 
                 if (HumanPlayer.IsDestroyed) {
-                    Audio.PlaySoundEffect(GameSound("Lose"));
+                    Audio.PlaySoundEffect(GameResources.GameSound("Lose"));
                 } else {
-                    Audio.PlaySoundEffect(GameSound("Winner"));
+                    Audio.PlaySoundEffect(GameResources.GameSound("Winner"));
                 }
                 
                 break;
@@ -200,7 +200,7 @@ namespace Battleships
                 PlayMissSequence(result.Row, result.Column, isHuman);
                 break;
             case ResultOfAttack.ShotAlready:
-                Audio.PlaySoundEffect(GameSound("Error"));
+                Audio.PlaySoundEffect(GameResources.GameSound("Error"));
                 break;
             }
         }
@@ -286,29 +286,29 @@ namespace Battleships
             
             switch (CurrentState) {
             case GameState.ViewingMainMenu:
-                HandleMainMenuInput();
+                MenuController.HandleMainMenuInput();
                 break;
             case GameState.ViewingGameMenu:
-                HandleGameMenuInput();
+                MenuController.HandleGameMenuInput();
                 break;
             case GameState.AlteringSettings:
-                HandleSetupMenuInput();
+                MenuController.HandleSetupMenuInput();
                 break;
             case GameState.Deploying:
-                HandleDeploymentInput();
+                DeploymentController.HandleDeploymentInput();
                 break;
             case GameState.Discovering:
-                HandleDiscoveryInput();
+                DiscoveryController.HandleDiscoveryInput();
                 break;
             case GameState.EndingGame:
-                HandleEndOfGameInput();
+                EndingGameController.HandleEndOfGameInput();
                 break;
             case GameState.ViewingHighScores:
-                HandleHighScoreInput();
+                HighScoreController.HandleHighScoreInput();
                 break;
             }
             
-            UpdateAnimations();
+            UtilityFunctions.UpdateAnimations();
         }
         
         /// <summary>
@@ -319,33 +319,33 @@ namespace Battleships
         /// </remarks>
         public static void DrawScreen()
         {
-            DrawBackground();
+            UtilityFunctions.DrawBackground();
             
             switch (CurrentState) {
             case GameState.ViewingMainMenu:
-                DrawMainMenu();
+               MenuController.DrawMainMenu();
                 break;
             case GameState.ViewingGameMenu:
-                DrawGameMenu();
+                MenuController.DrawGameMenu();
                 break;
             case GameState.AlteringSettings:
-                DrawSettings();
+               MenuController.DrawSettings();
                 break;
             case GameState.Deploying:
-                DrawDeployment();
+                DeploymentController.DrawDeployment();
                 break;
             case GameState.Discovering:
-                DrawDiscovery();
+               DiscoveryController.DrawDiscovery();
                 break;
             case GameState.EndingGame:
-                DrawEndOfGame();
+               EndingGameController.DrawEndOfGame();
                 break;
             case GameState.ViewingHighScores:
-                DrawHighScores();
+               HighScoreController.DrawHighScores();
                 break;
             }
             
-            DrawAnimations();
+            UtilityFunctions.DrawAnimations();
             
             SwinGame.RefreshScreen();
         }
@@ -358,7 +358,7 @@ namespace Battleships
         public static void AddNewState(GameState state)
         {
             _state.Push(state);
-            Message = "";
+            UtilityFunctions.Message = "";
         }
         
         /// <summary>
