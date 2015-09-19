@@ -54,5 +54,4 @@ D:\Documents\BattleshipsConversion\WINDOWS_Compiler\bin\Debug\Resources\SwinGame
 D:\Documents\BattleshipsConversion\WINDOWS_Compiler\bin\Debug\Resources\SwinGame.ico
 D:\Documents\BattleshipsConversion\WINDOWS_Compiler\bin\Debug\BattleShips.exe
 D:\Documents\BattleshipsConversion\WINDOWS_Compiler\bin\Debug\SwinGame.dll
-D:\Documents\BattleshipsConversion\WINDOWS_Compiler\obj\x86\Debug-Windows\BattleShips.csprojResolveAssemblyReference.cache
 D:\Documents\BattleshipsConversion\WINDOWS_Compiler\obj\x86\Debug-Windows\BattleShips.exe
