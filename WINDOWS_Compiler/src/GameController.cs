@@ -347,7 +347,9 @@ namespace Battleships
             
             UtilityFunctions.DrawAnimations();
             
-            SwinGame.RefreshScreen();
+			//Lowered to 30 frames per second to see the splash and explosion animations
+            SwinGame.RefreshScreen(60);
+
         }
         
         /// <summary>
