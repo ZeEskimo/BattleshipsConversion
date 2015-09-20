@@ -1,0 +1,2 @@
+D:\Documents\BattleshipsConversion\WINDOWS_Compiler\bin\Debug\BattleShips.xml
+D:\Documents\BattleshipsConversion\WINDOWS_Compiler\obj\x86\Debug-Mac\BattleShips.csprojResolveAssemblyReference.cache
